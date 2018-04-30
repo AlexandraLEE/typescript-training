@@ -10,27 +10,41 @@ describe('Template literals', () => {
       friends: ['Greg', 'Sebastian', 'Chloe']
     }
     // construct an arrow function using template literal string interpolation
-    const friendsStr = person => ``
-
+    const friendsStr = (personPL) => {
+    
+      return `${personPL.name} has ${personPL.friends.length} friends: ${personPL.friends.join(', ')}`;
+    }
+    const friendsStri = (personEN) => {
+      return `${personEN.name} has ${personEN.friends.length} friends: ${personEN.friends.join(', ')}`;
+    }
     expect(friendsStr(personPL)).toBe(
       'Jarosław has 4 friends: Antoni, Andrzej, Krystyna, Wiktor'
     )
-    expect(friendsStr(personEN)).toBe(
+    expect(friendsStri(personEN)).toBe(
       'Darren has 3 friends: Greg, Sebastian, Chloe'
     )
   })
 
   it('should support multi-line strings', () => {
     // construct a string with multiple lines without needing escaped newline characters
-    const multiLine = ``
+    const multiLine = `
+    Oh
+    my
+    dear
+    so much fun!`;
 
     expect(multiLine).toBe('\n    Oh\n    my\n    dear\n    so much fun!')
   })
 
   it('should support string escaping', () => {
     // escape a string in a template literal for each of these
-    expect().toBe('Hi\nthere!')
-    expect().toBe('This is `escaped` backtics')
+    const multiline = `Hi\nthere!`;
+  
+    const escaped = `This is \`escaped\` backtics`;
+
+
+    expect(multiline).toBe('Hi\nthere!')
+    expect(escaped).toBe('This is `escaped` backtics')
   })
 
   // you likely wont often use tagging, but it can be handy!
@@ -47,7 +61,9 @@ describe('Template literals', () => {
 
     function tagIt(literalString, ...interpolatedParts) {
       // implement this function to make the test pass
-      return `fixme`
+      //console.log(interpolatedParts);
+      
+      return `${literalString[0]}dear ${interpolatedParts[0] + literalString[1]}really ${interpolatedParts[1] + literalString[2]}`;
     }
   })
 
@@ -55,8 +71,13 @@ describe('Template literals', () => {
     // Using tagged template strings, write journey function
     // that will accept following 3 template strings
     // and return a string describing the journey
-    let journey;
-
+    let journey = function(first) {
+      return function(second) {
+        return function(third) {
+          return first + ", then " + second + " and finally " + third + "!"; 
+        }
+      }
+    }  
     expect(journey `Warsaw` `Poznan` `Berlin`).toBe('Warsaw, then Poznan and finally Berlin!')
     expect(journey `Poland` `Czech` `Austria`).toBe('Poland, then Czech and finally Austria!')
     expect(journey `Europe` `Asia` `Australia`).toBe('Europe, then Asia and finally Australia!')
