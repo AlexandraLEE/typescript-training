@@ -30,8 +30,7 @@ module.exports = function (config) {
       'src/functions/*.ts',
       'src/functions/various/*.ts',
       'src/promises/*.ts',
-      'src/params/*.ts',
-      'src/datatypes/*.ts'
+      'src/params/*.ts'
     ],
 
     // preprocess matching files before serving them to the browser

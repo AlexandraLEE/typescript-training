@@ -64,7 +64,9 @@ describe('Cloning', () => {
 		// implement deepClone operation
 		// which recreates all (top and each nested) levels of a data structure
 		function deepClone(data){
-			//...
+			let copy = Object.assign({},data);
+			copy.nested = Object.assign({}, data.nested);
+			return copy; 
 		}
 
 		it('can clone nested objects', () => {
@@ -78,14 +80,14 @@ describe('Cloning', () => {
 				},
 				hello: function(){ console.log('hello') }
 			};
-			var clone = JSON.parse(JSON.stringify(src));
+			var clone = deepClone(src);
 			
 
 			expect(src == clone).toEqual(false);
 			expect(src === clone).toEqual(false);
 			expect(src.nested == clone.nested).toEqual(false);
 			expect(src.nested === clone.nested).toEqual(false);
-			//expect(_.isEqual(src, clone)).toEqual(true);
+			expect(_.isEqual(src, clone)).toEqual(true);
 		});
 
 		it('can clone deeply nested objects', () => {
@@ -103,12 +105,12 @@ describe('Cloning', () => {
 				},
 				hello: function(){ console.log('hello') }
 			};
-			var clone = JSON.parse(JSON.stringify(src));
+			var clone = deepClone(src);
 			expect(src == clone).toEqual(false);
 			expect(src === clone).toEqual(false);
 			expect(src.nested == clone.nested).toEqual(false);
 			expect(src.nested === clone.nested).toEqual(false);
-			//expect(_.isEqual(src, clone)).toEqual(true);
+			expect(_.isEqual(src, clone)).toEqual(true);
 		});
 	});
 });

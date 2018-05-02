@@ -4,10 +4,10 @@ describe('Prototypes', () => {
 		// define your answers to make tests pass
 
 		it('can be used to produce objects', () => {
-			function Person(first, last, age?){
+			function Person(first, last, age?) {
 				this.first = first;
 				this.last = last;
-				if (age){
+				if (age) {
 					this.age = age;
 				}
 			}
@@ -28,12 +28,20 @@ describe('Prototypes', () => {
 
 	describe('extensions', () => {
 		it('can provide additional features', () => {
+			
+			Array.prototype.max = function() {
+				return Math.max.apply(null, this);
+			  };
+			  
+			  Array.prototype.min = function() {
+				return Math.min.apply(null, this);
+			  };
 
 			// Array.prototype.min and Array.prototype.max
 			// prototype methods don't exist. Create them, using Math.min/max
 
-			expect([3,6,9].map(e => e * 2).min()).toEqual(6);
-			expect([3,6,9].map(e => e * 2).max()).toEqual(18);
+			expect([3, 6, 9].map(e => e * 2).min()).toEqual(6);
+			expect([3, 6, 9].map(e => e * 2).max()).toEqual(18);
 			expect([4, 5, 6, 7, 8, 9].map(e => Math.sqrt(e)).min()).toEqual(2);
 			expect([4, 5, 6, 7, 8, 9].map(e => Math.sqrt(e)).max()).toEqual(3);
 
