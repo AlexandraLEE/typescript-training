@@ -126,7 +126,14 @@ describe('Destructuring', () => {
 			// and update these values using `process` function below
 			// (!) you might copy/paste the function call for each number...
 			// but there is a better solution using destructuring!
-			const process = amount => Math.round(amount * 0.43 * 100)/100;
+      
+      const process = amount => Math.round(amount * 0.43 * 100)/100;
+      
+      let getfigure = getData();
+      let balance = process(getfigure.balance);
+      let funds = process(getfigure.funds);
+      let incomes = process(getfigure.incomes);
+      let payments = process(getfigure.payments)
         
 			expect(balance).toBe(84173.01)
 			expect(funds).toBe(37380.93)
