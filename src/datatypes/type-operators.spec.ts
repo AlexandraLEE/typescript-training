@@ -3,7 +3,7 @@ describe('Object Types', () => {
 	describe('typeof operator', () => {
 		// define your answers to make tests pass
 
-		fit('defines primitive types precisely', () => {
+		it('defines primitive types precisely', () => {
 			expect(typeof 2016).toEqual("number");
 			expect(typeof '2016').toEqual("string");
 			expect(typeof ('2016' + 1)).toEqual("string");
